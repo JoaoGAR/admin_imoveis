@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Session\TokenMismatchException;
+use Hash;
 use App\Imoveis;
 use App\Enderecos;
 
@@ -15,6 +16,12 @@ class Imovel_controller extends Controller
 		$imoveis = Imoveis::get_imoveis($cod_imovel, $id_imovel, $titulo_imovel);
 
 		return $imoveis;
+	}
+
+	function aliseString($string)
+	{
+		$new_string = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/","/ /"),explode(" ","a A e E i I o O u U n N -"),$string);
+		return $new_string;
 	}
 
 	public function index(Request $request)
@@ -35,8 +42,8 @@ class Imovel_controller extends Controller
 	public function cadastrar_imovel(Request $request)
 	{
 		$this->validate($request, [
-			'cod_imovel' => 'required|unique|max:255',
-			'titulo_imovel' => 'required|unique|max:100',
+			'cod_imovel' => 'required|max:255',
+			'titulo_imovel' => 'required|max:100',
 			'preco_imovel' => 'required',
 			'area_imovel' => 'required',
 			'qtd_dormitorios_imovel' => 'required',
@@ -45,14 +52,22 @@ class Imovel_controller extends Controller
 		]);
 
 		$endereco = array(
-			'cep' => $request->input('cep'), 
-			'cidade' => $request->input('cidade'), 
-			'bairro' => $request->input('bairro'), 
-			'rua' => $request->input('rua'), 
-			'numero' => $request->input('numero'), 
-			'complemento' => $request->input('complemento'), 
-			'estado' => $request->input('estado')
+			'cep' => $request->input('cep_imovel'),
+			'cidade' => $request->input('cidade_imovel'),
+			'bairro' => $request->input('bairro_imovel'),
+			'estado' => $request->input('estado_imovel'),
+			'rua' => $request->input('rua_imovel'),
+			'numero' => $request->input('numero_imovel'),
+			'complemento' => $request->input('complemento_imovel')
 		);
+
+		$imagem_nome = $request->file('imagem_imovel')->getClientOriginalName();
+
+		$imagem_extensao = $request->file('imagem_imovel')->getClientOriginalExtension();
+		$imagem_novo_nome = $this->aliseString($imagem_nome);
+
+		$request->file('imagem_imovel')->move(base_path() . '/public/images/imoveis/imagens/', $imagem_novo_nome);
+		$url = '/images/imoveis/imagens/' . $imagem_novo_nome;
 
 		$data = array(
 			'titulo_imovel' => $request->input('titulo_imovel'),
@@ -63,9 +78,11 @@ class Imovel_controller extends Controller
 			'area_imovel' => $request->input('area_imovel'),
 			'qtd_dormitorios' => $request->input('qtd_dormitorios_imovel'),
 			'descricao_imovel' => $request->input('descricao_imovel'),
-			'imagem_imovel' => $request->input('imagem_imovel')
+			'imagem_imovel' => $url
 		);
 
 		Imoveis::new_imovel($data);
+
+		return view('admin.formulario_cadastro_imovel');
 	}
 }

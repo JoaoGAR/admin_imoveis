@@ -13,7 +13,8 @@
   <nav class="navbar navbar-default">
     <div class="container">
       <ul class="nav navbar-nav">
-        <li><a href="#">Link</a></li>
+        <li><a href="{{ route('/imoveis') }}">Listar imóveis</a></li>
+        <li><a href="{{ route('/imoveis/cadastrar_imovel') }}">Cadastrar imóvel</a></li>
       </ul>
     </div>
   </nav>
