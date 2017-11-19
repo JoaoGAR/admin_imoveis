@@ -85,4 +85,33 @@ class Imovel_controller extends Controller
 
 		return view('admin.formulario_cadastro_imovel');
 	}
+
+	public function imovel_info(Request $request)
+	{
+		$imovel_id = $request->input('imovel_id');
+		$cod_imovel = $request->input('cod_imovel');
+
+		$imovel = Imoveis::get_imovel($imovel_id, $cod_imovel);
+
+		$data = array(
+			'imovel' => $imovel[0]
+		);
+
+		return view('admin.modais.imovel_info', $data);
+	}
+
+	public function excluir_imovel(Request $request)
+	{
+		$imovel_id = $request->input('imovel_id');
+		$cod_imovel = $request->input('cod_imovel');
+
+		$imovel = Imoveis::delete_imovel($imovel_id, $cod_imovel);
+
+		$imoveis = self::imoveis($cod_imovel, $imovel_id, '');
+
+		$data = array(
+			'imoveis' => $imoveis
+		);
+		return view('admin.imoveis', $data);
+	}
 }

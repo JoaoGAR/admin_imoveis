@@ -22,3 +22,7 @@ Route::get('/imoveis/cadastrar_imovel', function () {
 })->name('/imoveis/cadastrar_imovel');
 
 Route::post('/imoveis/cadastrar_imovel', 'Imovel_controller@cadastrar_imovel')->name('cadastrar_imovel'); 
+
+Route::get('/imovel/imovel_info', 'Imovel_controller@imovel_info')->name('imovel_info'); 
+
+Route::get('/imovel/excluir_imovel', 'Imovel_controller@excluir_imovel')->name('excluir_imovel'); 

@@ -39,7 +39,7 @@
 
 	<hr>
 
-	<table class="table table-responsive">
+	<table class="table table-responsive table-striped">
 		<thead>
 			<tr>
 				<th scope="col">COD. IMÓVEL</th>
@@ -59,8 +59,8 @@
 				<td>{{ $imovel->area_imovel }}</td>
 				<td>{{ $imovel->qtd_dormitorios }}</td>
 				<td>{{ $imovel->id_tipo_imovel }}</td>
-				<td><button class="btn btn-xs btn-info">Ver</button></td>
-				<td><button class="btn btn-xs btn-danger">Excluir</button></td>
+				<td><button imovel_id="{{ $imovel->id_imovel }}" imovel_cod="{{ $imovel->cod_imovel }}" class="btn_imovel_info btn btn-xs btn-info">Ver</button></td>
+				<td><button imovel_id="{{ $imovel->id_imovel }}" imovel_cod="{{ $imovel->cod_imovel }}" class="btn_imovel_excluir btn btn-xs btn-danger">Excluir</button></td>
 			</tr>
 			@endforeach()
 			<tr>
@@ -68,9 +68,51 @@
 			</tr>
 		</tbody>
 	</table>
-
-	<div class="row">
-		
-	</div>
 </div>
+
+<div id="info_modal">
+	
+</div>
+
+<script type="text/javascript">
+	$('.btn_imovel_info').on('click', function(e){
+		imovel_id = $(this).attr('imovel_id');
+		cod_imovel = $(this).attr('imovel_cod');
+
+		$.ajax({
+			type: "GET",
+			url: '/imovel/imovel_info',   
+			data: {imovel_id: imovel_id, cod_imovel: cod_imovel},
+			success: function (result) 
+			{
+				$('#info_modal').html();
+				$('#info_modal').html(result);
+
+				$('#imovel_info').modal('show');
+			}
+		});
+	})
+
+	$('.btn_imovel_excluir').on('click', function(e){
+		imovel_id = $(this).attr('imovel_id');
+		cod_imovel = $(this).attr('imovel_cod');
+
+		$.ajax({
+			type: "GET",
+			url: '/imovel/excluir_imovel',   
+			data: {imovel_id: imovel_id, cod_imovel: cod_imovel},
+			success: function (result) 
+			{
+				console.log("OK");
+			}
+		});
+	})
+
+	$('.btn_imovel_tipo').on('click', function(e){
+		$('#id_tipo_imovel').val($(this).attr('id_tipo'));
+		classe = $(this).attr('class');
+		$('.btn_imovel_tipo').attr('class', 'btn_imovel_tipo btn btn-block btn-default');
+		$(this).attr('class', 'btn_imovel_tipo btn btn-block btn-primary');
+	})
+</script>
 @endsection
