@@ -86,6 +86,20 @@ class Imovel_controller extends Controller
 		return view('admin.formulario_cadastro_imovel');
 	}
 
+	public function importar_xml()
+	{
+		$url = "http://imob21.com.br/acc/imob21/publish/integracao.xml";
+		$url = asset('assets/xml/file.xml');
+
+		$data = file_get_contents($url);
+		$xml = simplexml_load_string($data);
+
+		foreach ($xml as $imovel) 
+		{
+			dd($imovel);
+		}
+	}
+
 	public function imovel_info(Request $request)
 	{
 		$imovel_id = $request->input('imovel_id');

@@ -58,7 +58,7 @@
 				<td>{{ $imovel->preco_imovel }}</td>
 				<td>{{ $imovel->area_imovel }}</td>
 				<td>{{ $imovel->qtd_dormitorios }}</td>
-				<td>{{ $imovel->id_tipo_imovel }}</td>
+				<td>{{ $imovel->tipo_imovel }}</td>
 				<td><button imovel_id="{{ $imovel->id_imovel }}" imovel_cod="{{ $imovel->cod_imovel }}" class="btn_imovel_info btn btn-xs btn-info">Ver</button></td>
 				<td><button imovel_id="{{ $imovel->id_imovel }}" imovel_cod="{{ $imovel->cod_imovel }}" class="btn_imovel_excluir btn btn-xs btn-danger">Excluir</button></td>
 			</tr>

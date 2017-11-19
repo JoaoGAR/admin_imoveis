@@ -1,13 +1,13 @@
 <div id="imovel_info" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
+    <div class="modal-content clearfix">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">{{ $imovel->titulo_imovel }}</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body clearfix">
 
-        <div class="col-sm-12">
+        <div class="col-sm-12 clearfix">
           <div class="row" style="margin-top: 10px;">
             <div class="col-sm-4">
               <label>COD.Imóvel</label>
@@ -53,7 +53,7 @@
 
             <div class="col-sm-3">
               <label>Quantidade de dormitórios</label>
-              <input class="form-control" type="text" name="qtd_dormitorios_imovel" value="{{  $imovel->qtd_dormitorios_imovel }}">
+              <input class="form-control" type="text" name="qtd_dormitorios_imovel" value="{{  $imovel->qtd_dormitorios }}">
             </div>
 
             <div class="col-sm-3">
@@ -65,39 +65,39 @@
           <div class="row" style="margin-top: 10px;">
             <div class="col-sm-2">
               <label>CEP</label>
-              <input id="cep" class="form-control" type="text" name="cep_imovel" value="{{  $imovel->cep_imovel }}">
+              <input id="cep" class="form-control" type="text" name="cep_imovel" value="{{  $imovel->cep }}">
             </div>
 
             <div class="col-sm-3">
               <label>Cidade</label>
-              <input id="cidade" class="form-control" type="text" name="cidade_imovel" value="{{  $imovel->cidade_imovel }}">
+              <input id="cidade" class="form-control" type="text" name="cidade_imovel" value="{{  $imovel->cidade }}">
             </div>
 
             <div class="col-sm-3">
               <label>Bairro</label>
-              <input id="bairro" class="form-control" type="text" name="bairro_imovel" value="{{  $imovel->bairro_imovel }}">
+              <input id="bairro" class="form-control" type="text" name="bairro_imovel" value="{{  $imovel->bairro }}">
             </div>
 
             <div class="col-sm-4">
               <label>Estado</label>
-              <input id="estado" class="form-control" type="text" name="estado_imovel" value="{{  $imovel->estado_imovel }}">
+              <input id="estado" class="form-control" type="text" name="estado_imovel" value="{{  $imovel->estado }}">
             </div>
           </div>
 
           <div class="row" style="margin-top: 10px;">
             <div class="col-sm-4">
               <label>Rua</label>
-              <input id="rua" class="form-control" type="text" name="rua_imovel" value="{{  $imovel->rua_imovel }}">
+              <input id="rua" class="form-control" type="text" name="rua_imovel" value="{{  $imovel->rua }}">
             </div>
 
             <div class="col-sm-4">
               <label>Numero</label>
-              <input id="numero" class="form-control" type="text" name="numero_imovel" value="{{  $imovel->numero_imovel }}">
+              <input id="numero" class="form-control" type="text" name="numero_imovel" value="{{  $imovel->numero }}">
             </div>
 
             <div class="col-sm-4">
               <label>Complemento</label>
-              <input id="complemento" class="form-control" type="text" name="complemento_imovel" value="{{  $imovel->complemento_imovel }}">
+              <input id="complemento" class="form-control" type="text" name="complemento_imovel" value="{{  $imovel->complemento }}">
             </div>
           </div>
 

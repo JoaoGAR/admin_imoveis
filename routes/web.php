@@ -26,3 +26,5 @@ Route::post('/imoveis/cadastrar_imovel', 'Imovel_controller@cadastrar_imovel')->
 Route::get('/imovel/imovel_info', 'Imovel_controller@imovel_info')->name('imovel_info'); 
 
 Route::get('/imovel/excluir_imovel', 'Imovel_controller@excluir_imovel')->name('excluir_imovel'); 
+
+Route::get('/imovel/importar_xml', 'Imovel_controller@importar_xml')->name('importar_xml'); 
